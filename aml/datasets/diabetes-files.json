@@ -1,0 +1,20 @@
+{
+  "datasetType": "File",
+  "parameters": {
+    "path": [
+    {
+      "datastoreName": "diabetes",
+      "relativePath": "parquet/diabetes.parquet"
+    }
+  ]},
+  "registration": {
+    "createNewVersion": true,
+    "description": "This is a files dataset of the Diabetes dataset",
+    "name": "diabetes-files",
+    "tags": {
+      "dataset": "file",
+      "file_type": "parquet"
+    }
+  },
+  "schemaVersion": 1
+}

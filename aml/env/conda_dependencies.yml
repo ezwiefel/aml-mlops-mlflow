@@ -1,0 +1,15 @@
+channels:
+- anaconda
+- conda-forge
+dependencies:
+- python=3.8.6
+- pip:
+  - mlflow==1.11.0
+  - xgboost==1.2.1
+  - pandas==1.1.4
+  - scikit-learn==0.23.2
+  - azureml-mlflow==1.17.0.post1
+  - azureml-defaults==1.17.0
+  - matplotlib==3.3.2
+- pip
+name: azureml_2b8075ffdc5aa3aca8a17b5314c132dd

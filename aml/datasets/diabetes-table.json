@@ -1,0 +1,22 @@
+{
+  "datasetType": "Tabular",
+  "parameters": {
+    "path": [
+      {
+        "datastoreName": "diabetes",
+        "relativePath": "parquet/diabetes.parquet"
+      }
+    ],
+    "sourceType": "parquet_files"
+  },
+  "registration": {
+    "createNewVersion": true,
+    "description": "This is a tabular dataset of the Diabetes dataset",
+    "name": "diabetes",
+    "tags": {
+      "dataset": "tabular",
+      "file_type": "parquet"
+    }
+  },
+  "schemaVersion": 1
+}
