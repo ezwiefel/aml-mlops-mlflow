@@ -1,0 +1,21 @@
+# The script to run.
+script: src/train/train.py
+arguments: ["--data-path", "$DIABETES_PATH"]
+target: cpu-cluster
+framework: Python
+nodeCount: 1
+environment:
+  name: MLFlow-XGBoost
+history:
+  outputCollection: true
+  snapshotProject: true
+  directoriesToWatch:
+  - logs
+data:
+  diabetes:
+    dataLocation:
+      dataset:
+        name: diabetes-files
+        version: latest
+    mechanism: mount
+    environmentVariableName: DIABETES_PATH
