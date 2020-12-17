@@ -2,5 +2,5 @@
 .vscode/
 .config/
 .ipynb_checkpoints
-.ipynb_checkpoints
 aml_config/config.json
+.azureml/

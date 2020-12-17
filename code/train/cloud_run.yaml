@@ -1,5 +1,5 @@
 # The script to run.
-script: src/train/train.py
+script: train.py
 arguments: ["--data-path", "$DIABETES_PATH"]
 target: cpu-cluster
 framework: Python
