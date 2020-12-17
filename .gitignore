@@ -4,3 +4,4 @@
 .ipynb_checkpoints
 aml_config/config.json
 .azureml/
+.pre-commit-config.yaml

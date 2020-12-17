@@ -30,3 +30,6 @@ upgrade-aml-sdk:
 	pip list -o | grep azureml | awk '{ print $$1"=="$$3}' > $(req_file_name)
 	pip install -r $(req_file_name)
 	rm $(req_file_name)
+
+lint:
+	flake8
