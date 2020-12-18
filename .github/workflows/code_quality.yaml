@@ -1,0 +1,24 @@
+name: Code Quality
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python 3.8.6
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8.6"
+      - name: Install flake8
+        run: pip install flake8
+      - name: flake8 annotator
+        uses: rbialon/flake8-annotations@v1
+      - name: lint
+        run: flake8
