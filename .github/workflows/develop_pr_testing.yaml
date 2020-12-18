@@ -19,6 +19,6 @@ jobs:
         uses: julianwachholz/flake8-action@v1.1.0
         with:
           checkName: "Python Lint"
-          path: path/to/files
+          path: code/train/ aml/utils
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
