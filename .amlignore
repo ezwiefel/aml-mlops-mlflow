@@ -5,3 +5,6 @@ azureml-logs
 outputs
 azureml-setup
 docs
+.config
+.vscode
+aml/

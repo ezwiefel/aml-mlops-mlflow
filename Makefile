@@ -23,10 +23,13 @@ environment-local:
 	python aml/utils/build_env.py --name MLFlow-XGBoost --local
 
 train: environment
-	az ml run submit-script -c cpu-cluster
+	az ml run submit-script --path code/train -c cloud_run.yaml
 
 # Update the AML SDK to the latest version
 upgrade-aml-sdk:
 	pip list -o | grep azureml | awk '{ print $$1"=="$$3}' > $(req_file_name)
 	pip install -r $(req_file_name)
 	rm $(req_file_name)
+
+lint:
+	flake8
