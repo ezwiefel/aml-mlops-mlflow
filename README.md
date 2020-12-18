@@ -14,4 +14,4 @@ Kick off a training run:
 make train
 ```
 
-TODO: Add architectural diagram
+<!-- TODO: Add architectural diagram -->
