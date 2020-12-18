@@ -1,4 +1,4 @@
-name: Linting and Testing
+name: Code Quality
 
 on:
   pull_request:
