@@ -1,0 +1,25 @@
+name: Train Model
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python 3.8.6
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8.6"
+      - name: Extract Branch name
+        shell: bash
+        run: echo {{ github.base_ref }}
+      # - name: Azure Login - Development
+      - name: Setup Azure CLI
+        uses: azure/CLI@v1
+          
