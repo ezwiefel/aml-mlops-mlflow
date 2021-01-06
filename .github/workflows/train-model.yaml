@@ -1,8 +1,11 @@
 name: Train Model
 
 on:
-  pull_request:
+  workflow_run:
+    workflows: ["Code Quality"]
     branches: [ main, develop ]
+    types:
+      - completed
 
   workflow_dispatch:
 
@@ -20,6 +23,6 @@ jobs:
         shell: bash
         run: echo ${{ github.base_ref }}
       # - name: Azure Login - Development
-      - name: Setup Azure CLI
-        uses: azure/CLI@v1
+      # - name: Setup Azure CLI
+      #   uses: azure/CLI@v1
           
