@@ -20,9 +20,18 @@ jobs:
       # Log into Azure differently depending on the base branch name
       - name: Azure Login - Development
         if: ${{ github.base_ref=='develop' }}
-        shell: bash
-        run: echo "Development"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AML_CREDS_DEV }}
+      
       - name: Azure Login - Main
         if: ${{ github.base_ref=='main' }}
-        shell: bash
-        run: echo "Development"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AML_CREDS_PROD }}
+
+      - name: List Environments
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az ml workspace list
