@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  lint:
+  train:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,7 +18,7 @@ jobs:
           python-version: "3.8.6"
       - name: Extract Branch name
         shell: bash
-        run: echo {{ github.base_ref }}
+        run: echo ${{ github.base_ref }}
       # - name: Azure Login - Development
       - name: Setup Azure CLI
         uses: azure/CLI@v1
