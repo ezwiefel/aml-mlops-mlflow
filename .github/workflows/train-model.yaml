@@ -1,11 +1,8 @@
 name: Train Model
 
 on:
-  workflow_run:
-    workflows: ["Code Quality"]
+  pull_request:
     branches: [ main, develop ]
-    types:
-      - completed
 
   workflow_dispatch:
 
@@ -21,8 +18,5 @@ jobs:
           python-version: "3.8.6"
       - name: Extract Branch name
         shell: bash
-        run: echo ${{ github.base_ref }}
+        run: echo ${{ github.base_ref=="main" }}
       # - name: Azure Login - Development
-      # - name: Setup Azure CLI
-      #   uses: azure/CLI@v1
-          
