@@ -16,7 +16,11 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: "3.8.6"
-      - name: Extract Branch name
+      - name: Azure Login - Development
+        if: ${{ github.base_ref=='develop' }}
         shell: bash
-        run: echo ${{ github.base_ref=='main' }}
-      # - name: Azure Login - Development
+        run: echo "Development"
+      - name: Azure Login - Main
+        if: ${{ github.base_ref=='main' }}
+        shell: bash
+        run: echo "Main"
