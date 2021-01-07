@@ -36,3 +36,15 @@ jobs:
           inlineScript: |
             az config set extension.use_dynamic_install=yes_without_prompt
             az ml workspace list
+      
+      - name: Configure Workspace
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            make config
+
+      - name: Run Training
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            make train
