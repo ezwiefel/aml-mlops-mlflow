@@ -23,12 +23,26 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AML_CREDS_DEV }}
-      
+
+      - name: Attach Folder to AML Dev Workspace
+        if: ${{ github.base_ref=='develop' }}
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            echo ${{ secrets.AML_DEV_CONFIG }} > .azureml/config.json
+
       - name: Azure Login - Main
         if: ${{ github.base_ref=='main' }}
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AML_CREDS_PROD }}
+
+      - name: Attach Folder to AML Prod Workspace
+        if: ${{ github.base_ref=='main' }}
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            echo ${{ secrets.AML_PROD_CONFIG }} > .azureml/config.json
 
       - name: List Environments
         uses: azure/CLI@v1
