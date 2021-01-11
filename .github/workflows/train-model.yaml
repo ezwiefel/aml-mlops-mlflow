@@ -30,7 +30,7 @@ jobs:
         with:
           inlineScript: |
             mkdir .azureml
-            echo ${{ secrets.AML_DEV_CONFIG.Scope }}
+            echo ${{ secrets.AML_DEV_CONFIG }}
 
       - name: Azure Login - Main
         if: ${{ github.base_ref=='main' }}
@@ -44,7 +44,7 @@ jobs:
         with:
           inlineScript: |
             mkdir .azureml
-            echo ${{ secrets.AML_PROD_CONFIG.Scope }} 
+            echo ${{ secrets.AML_PROD_CONFIG }} 
             
 
       - name: Configure Workspace
