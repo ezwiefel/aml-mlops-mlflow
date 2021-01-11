@@ -29,6 +29,7 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
+            mkdir .azureml
             echo ${{ secrets.AML_DEV_CONFIG }} > .azureml/config.json
 
       - name: Azure Login - Main
@@ -42,6 +43,7 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
+            mkdir .azureml
             echo ${{ secrets.AML_PROD_CONFIG }} > .azureml/config.json
 
       - name: List Environments
