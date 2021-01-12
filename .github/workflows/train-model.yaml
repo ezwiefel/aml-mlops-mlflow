@@ -1,0 +1,60 @@
+name: Train Model
+
+on:
+  # Only run the test after the linting workload is successful
+  workflow_run:
+    workflows: ["Code Quality"]
+    branches: [ main, develop ]
+    types: 
+      - completed
+
+  workflow_dispatch:
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python 3.8.6
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8.6"
+      
+      # Log into Azure differently depending on the base branch name
+      - name: Azure Login - Development
+        if: ${{ github.base_ref=='develop' }}
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AML_CREDS_DEV }}
+
+      - name: Azure Login - Main
+        if: ${{ github.base_ref=='main' }}
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AML_CREDS_PROD }}
+
+      - name: Configure AZ CLI
+        run: az config set extension.use_dynamic_install=yes_without_prompt
+
+      - name: Attach Folder to AML Prod Workspace
+        if: ${{ github.base_ref=='main' }}
+        run: az ml folder attach --workspace-name ${{ secrets.PROD_AML_WS }}
+                                 --resource-group ${{ secrets.PROD_AML_RG }}
+                                 --experiment-name diabetes-mlflow 
+
+      - name: Attach Folder to AML Dev Workspace
+        if: ${{ github.base_ref=='develop' }}
+        run: az ml folder attach --workspace-name ${{ secrets.DEV_AML_WS }}
+                                 --resource-group ${{ secrets.DEV_AML_RG }}
+                                 --experiment-name diabetes-mlflow 
+
+      - name: Install build-requirements.txt
+        run: pip install -r build-requirements.txt
+
+      # Explicitly build the environment to make tracking errors easier
+      - name: Register and Build Environment
+        run: make env
+
+      - name: Run Training
+        run: make train

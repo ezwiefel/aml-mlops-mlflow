@@ -17,7 +17,7 @@ def parse_args() -> Namespace:
     parser.add_argument("--version", '-v', type=int,
                         help="The version of the registered environment to build",
                         default=None)
-    parser.add_argument("--async", "-q", name="run_async", action="store_true",
+    parser.add_argument("--async", "-q", dest="run_async", action="store_true",
                         help="Run asyncronously")
     parser.add_argument('--local', '-l', action="store_true",
                         help="Build the environment on the local compute context")
