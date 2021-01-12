@@ -3,6 +3,8 @@ req_file_name = aml-requirements-$(date).txt
 
 # Create datastores and register datasets
 register-data:
+	# This is not the ideal way to attach a datastore. Usually, this would be done before you are submitting jobs.
+	# However, given the demo nature of this repo, a link to the demo dataset was included here. 
 	az ml datastore attach-blob -c diabetes -a publicmldatasc -n diabetes --sas-token "?si=DiabetesReadOnly&sv=2019-10-10&sr=c&sig=cz9P%2B1V1eC6FvDIKBQNmA5nWqbsGfkqzdPTTYmiidfg%3D"
 	az ml dataset register -f aml/datasets/diabetes-table.json --skip-validation
 	az ml dataset register -f aml/datasets/diabetes-files.json --skip-validation
