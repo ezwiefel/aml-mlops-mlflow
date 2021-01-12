@@ -1,0 +1,2 @@
+# Required Python packages for the build agent
+azureml-sdk
