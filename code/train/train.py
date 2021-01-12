@@ -44,6 +44,7 @@ def main(data_path, random_seed, colsample_bytree, subsample):
             'seed': random_seed,
         }
 
+        # Log the model after training
         mlflow.xgboost.autolog()
         model = xgb.train(params, dtrain)
 
@@ -53,6 +54,7 @@ def main(data_path, random_seed, colsample_bytree, subsample):
         rmse = mean_squared_error(y_test, y_pred, squared=False)
         r2 = r2_score(y_test, y_pred)
 
+        # Log specific evaluation metrics
         mlflow.log_metrics({'val_r2': r2, 'val_rmse': rmse, 'val_mae': mae})
 
 
