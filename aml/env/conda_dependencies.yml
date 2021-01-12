@@ -11,6 +11,6 @@ dependencies:
   - azureml-mlflow==1.17.0.post1
   - azureml-defaults==1.17.0
   - matplotlib==3.3.2
-  - PyJWT < 2.0.0
+  - PyJWT > 2.0.0
 - pip
 name: azureml_2b8075ffdc5aa3aca8a17b5314c132dd
