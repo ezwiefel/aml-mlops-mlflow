@@ -4,8 +4,8 @@ req_file_name = aml-requirements-$(date).txt
 # Create datastores and register datasets
 register-data:
 	az ml datastore attach-blob -c diabetes -a publicmldatasc -n diabetes --sas-token "?si=DiabetesReadOnly&sv=2019-10-10&sr=c&sig=cz9P%2B1V1eC6FvDIKBQNmA5nWqbsGfkqzdPTTYmiidfg%3D"
-	az ml dataset register -f aml/datasets/diabetes-table.json
-	az ml dataset register -f aml/datasets/diabetes-files.json
+	az ml dataset register -f aml/datasets/diabetes-table.json --skip-validation
+	az ml dataset register -f aml/datasets/diabetes-files.json --skip-validation
 
 create-compute:
 	az ml computetarget create amlcompute --max-nodes --idle-seconds-before-scaledown 600 -n cpu-cluster -s standard_ds15_v2

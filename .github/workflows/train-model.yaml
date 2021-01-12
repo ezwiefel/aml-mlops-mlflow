@@ -35,8 +35,8 @@ jobs:
 
       - name: Attach Folder to AML Prod Workspace
         if: ${{ github.base_ref=='main' }}
-        run: az ml folder attach --workspace-name ${{ secrets.PROD_AML_WS }} \
-                                 --resource-group ${{ secrets.PROD_AML_RG }} \
+        run: az ml folder attach --workspace-name ${{ secrets.PROD_AML_WS }}
+                                 --resource-group ${{ secrets.PROD_AML_RG }}
                                  --experiment-name diabetes-mlflow 
 
       - name: Attach Folder to AML Dev Workspace
