@@ -8,7 +8,7 @@ register-data:
 	az ml dataset register -f aml/datasets/diabetes-files.json --skip-validation
 
 create-compute:
-	az ml computetarget create amlcompute --max-nodes --idle-seconds-before-scaledown 600 -n cpu-cluster -s standard_ds15_v2
+	az ml computetarget create amlcompute --max-nodes 5 --idle-seconds-before-scaledown 600 -n cpu-cluster -s standard_ds15_v2
 
 config: register-data create-compute
 
