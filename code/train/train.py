@@ -55,7 +55,6 @@ def main(data_path, random_seed, colsample_bytree, subsample):
 
         mlflow.log_metrics({'val_r2': r2, 'val_rmse': rmse, 'val_mae': mae})
 
-
 if __name__ == "__main__":
     args = parse_args()
     main(data_path=args.data_path,
