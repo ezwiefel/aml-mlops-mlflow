@@ -45,6 +45,9 @@ jobs:
                                  --resource-group ${{ secrets.DEV_AML_RG }}
                                  --experiment-name diabetes-mlflow 
 
+      - name: Install build-requirements.txt
+        run: pip install -r build-requirements.txt
+
       - name: Configure Workspace
         run: make config
 
