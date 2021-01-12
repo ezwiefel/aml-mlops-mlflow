@@ -30,14 +30,20 @@ jobs:
         with:
           creds: ${{ secrets.AML_CREDS_PROD }}
 
+      - name: Configure AZ CLI
+        run: az config set extension.use_dynamic_install=yes_without_prompt
+
       - name: Attach Folder to AML Prod Workspace
         if: ${{ github.base_ref=='main' }}
-        run: az ml folder attach --workspace-name ${{ fromJson(secrets.PROD_AML_CONFIG).workspace_name }} --resource-group ${{ fromJson(secrets.PROD_AML_CONFIG).resource_group }} --experiment-name diabetes-mlflow 
+        run: az ml folder attach --workspace-name ${{ secrets.PROD_AML_WS }} \\
+                                 --resource-group ${{ secrets.PROD_AML_RG }} \\
+                                 --experiment-name diabetes-mlflow 
 
       - name: Attach Folder to AML Dev Workspace
         if: ${{ github.base_ref=='develop' }}
-        run: az ml folder attach --workspace-name ${{ secrets.DEV_AML_WS }} --resource-group ${{ secrets.DEV_AML_RG }} --experiment-name diabetes-mlflow 
-
+        run: az ml folder attach --workspace-name ${{ secrets.DEV_AML_WS }} \\
+                                 --resource-group ${{ secrets.DEV_AML_RG }} \\
+                                 --experiment-name diabetes-mlflow 
 
       - name: Configure Workspace
         run: make config
