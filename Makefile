@@ -14,6 +14,8 @@ create-compute:
 
 config: register-data create-compute
 
+env: environment
+
 # Build the AML environment
 environment:
 	az ml environment register -d aml/env
@@ -24,7 +26,7 @@ environment-local:
 	az ml environment register -d aml/env
 	python aml/utils/build_env.py --name MLFlow-XGBoost --local
 
-train: environment
+train:
 	az ml run submit-script --path code/train -c cloud_run.yaml
 
 # Update the AML SDK to the latest version

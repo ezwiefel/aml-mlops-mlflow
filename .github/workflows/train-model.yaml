@@ -48,8 +48,9 @@ jobs:
       - name: Install build-requirements.txt
         run: pip install -r build-requirements.txt
 
-      - name: Configure Workspace
-        run: make config
+      # Explicitly build the environment to make tracking errors easier
+      - name: Register and Build Environment
+        run: make env
 
       - name: Run Training
         run: make train
