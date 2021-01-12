@@ -24,14 +24,6 @@ jobs:
         with:
           creds: ${{ secrets.AML_CREDS_DEV }}
 
-      - name: Attach Folder to AML Dev Workspace
-        if: ${{ github.base_ref=='develop' }}
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            mkdir .azureml
-            echo ${{ secrets.AML_DEV_CONFIG }}
-
       - name: Azure Login - Main
         if: ${{ github.base_ref=='main' }}
         uses: azure/login@v1
@@ -40,21 +32,15 @@ jobs:
 
       - name: Attach Folder to AML Prod Workspace
         if: ${{ github.base_ref=='main' }}
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            mkdir .azureml
-            echo ${{ secrets.AML_PROD_CONFIG }} 
-            
+        run: az ml folder attach --workspace-name ${{ fromJson(secrets.PROD_AML_CONFIG).workspace_name }} --resource-group ${{ fromJson(secrets.PROD_AML_CONFIG).resource_group }} --experiment-name diabetes-mlflow 
+
+      - name: Attach Folder to AML Dev Workspace
+        if: ${{ github.base_ref=='develop' }}
+        run: az ml folder attach --workspace-name ${{ secrets.DEV_AML_WS }} --resource-group ${{ secrets.DEV_AML_RG }} --experiment-name diabetes-mlflow 
+
 
       - name: Configure Workspace
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            make config
+        run: make config
 
       - name: Run Training
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            make train
+        run: make train
