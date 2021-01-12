@@ -1,8 +1,12 @@
 name: Train Model
 
 on:
-  pull_request:
+  # Only run the test after the linting workload is successful
+  workflow_run:
+    workflows: ["Code Quality"]
     branches: [ main, develop ]
+    types: 
+      - completed
 
   workflow_dispatch:
 
