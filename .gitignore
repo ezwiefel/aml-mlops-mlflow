@@ -5,3 +5,6 @@
 aml_config/config.json
 .azureml/
 .pre-commit-config.yaml
+.github/workflows/ActDockerFile
+*.secrets
+pr-dev.json
