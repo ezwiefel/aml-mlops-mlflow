@@ -62,7 +62,7 @@ jobs:
                                  --experiment-name diabetes-mlflow 
 
       - name: Install build-requirements.txt
-        run: pip install -r build-requirements.txt
+        run: pip install -r build_requirements.txt
 
       # Explicitly build the environment to make tracking errors easier
       - name: Register and Build Environment
