@@ -33,9 +33,6 @@ jobs:
         with:
           python-version: "3.8.6"
       
-      - name: See Creds
-        run: echo "${{ secrets.AML_CREDS_DEV }}"
-
       # Log into Azure differently depending on the base branch name
       - name: Azure Login - Development
         if: ${{ github.base_ref=='develop' }}
