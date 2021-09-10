@@ -6,6 +6,7 @@ import xgboost as xgb
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 
+# This is a test comment
 
 def parse_args():
     """Parse command line arguments"""
